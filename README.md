@@ -1,5 +1,3 @@
-# projetowebII2026.1
-
 ## Nome do projeto
 
 **RetroToons**
