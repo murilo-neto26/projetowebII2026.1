@@ -7,12 +7,15 @@ class Desenho(models.Model):
         ('aventura', 'Aventura'),
         ('misterio', 'Mistério'),
         ('acao', 'Ação'),
+        ('romance', 'Romance'),
+
     ]
     
     nome = models.CharField(max_length=100)
     ano = models.IntegerField()
     genero = models.CharField(max_length=20, choices=GENEROS)
-    descricao = models.TextField()
+    estudio = models.CharField(max_length=100)
+    sinopse = models.TextField()
 
     def __str_(self):
         return self.nome
