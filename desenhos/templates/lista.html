@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Desenhos Antigos</title>
+    </head>
+    <body>
+        <h1>Biblioteca de Desenhos</h1>
+
+        {% for desenho in desenhos %}
+
+            <h2>{{ desenho.nome }}</h2>
+
+            <p>Ano: {{ desenho.ano }} </p>
+
+            <p>Gênero: {{ desenho.genero }}</p>
+
+            <p>{{ desenho.descricao }}</p>
+
+            <hr>
+
+        {% endfor %}
+    </body>
+</html>
