@@ -17,8 +17,9 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nome', models.CharField(max_length=100)),
                 ('ano', models.IntegerField()),
-                ('genero', models.CharField(choices=[('comedia', 'Comédia'), ('aventura', 'Aventura'), ('misterio', 'Mistério'), ('acao', 'Ação')], max_length=20)),
-                ('descricao', models.TextField()),
+                ('genero', models.CharField(choices=[('comedia', 'Comédia'), ('aventura', 'Aventura'), ('misterio', 'Mistério'), ('acao', 'Ação'), ('romance', 'Romance')], max_length=20)),
+                ('estudio', models.CharField(max_length=100)),
+                ('sinopse', models.TextField()),
             ],
         ),
     ]
