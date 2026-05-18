@@ -1,0 +1,15 @@
+{% extends 'desenhos/base.html' %}
+{% block title %}
+Listas
+{% endblock %}
+{% block content %}
+<h1>Listas</h1>
+{% for lista in listas %}
+<div class="card">
+    <h2>{{ lista.nome }}</h2>
+    {% for desenho in lista.desenhos.all %}
+        <p>{{ desenho.nome }}</p>
+    {% endfor %}
+</div>
+{% endfor %}
+{% endblock %}

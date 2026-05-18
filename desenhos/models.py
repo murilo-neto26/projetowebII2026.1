@@ -10,12 +10,23 @@ class Desenho(models.Model):
         ('romance', 'Romance'),
 
     ]
-    
+
     nome = models.CharField(max_length=100)
     ano = models.IntegerField()
-    genero = models.CharField(max_length=20, choices=GENEROS)
+    genero = models.CharField(max_length=100, choices=GENEROS)
     estudio = models.CharField(max_length=100)
+    emissora = models.CharField(max_length=100)
     sinopse = models.TextField()
+    capa = models.ImageField(
+        upload_to='capas/',
+        blank=True,
+        null=True
+    )
 
-    def __str_(self):
+    def __str__(self):
         return self.nome
+
+
+class Lista(models.Model):
+    nome = models.CharField(max_length=100)
+    desenhos = models.ManyToManyField(Desenho)

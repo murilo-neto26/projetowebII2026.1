@@ -1,0 +1,33 @@
+{% extends 'desenhos/base.html' %}
+{% block title %}
+Biblioteca
+{% endblock %}
+{% block content %}
+<h1>Biblioteca de Desenhos</h1>
+<form method="GET">
+    <input
+        type="text"
+        name="busca"
+        placeholder="Pesquisar desenho..."
+    >
+    <button type="submit">
+        Buscar
+    </button>
+</form>
+{% for desenho in desenhos %}
+<div class="card">
+    {% if desenho.capa %}
+        <img
+            src="{{ desenho.capa.url }}"
+            width="200"
+        >
+    {% endif %}
+    <h2>{{ desenho.nome }}</h2>
+    <p><strong>Ano:</strong> {{ desenho.ano }}</p>
+    <p><strong>Gênero:</strong> {{ desenho.genero }}</p>
+    <p><strong>Estúdio:</strong> {{ desenho.estudio }}</p>
+    <p><strong>Emissora:</strong> {{ desenho.emissora }}</p>
+    <p>{{ desenho.sinopse }}</p>
+</div>
+{% endfor %}
+{% endblock %}
