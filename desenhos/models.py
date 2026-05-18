@@ -8,7 +8,8 @@ class Desenho(models.Model):
         ('misterio', 'Mistério'),
         ('acao', 'Ação'),
         ('romance', 'Romance'),
-
+        ('fantasia', 'Fantasia'),
+        ('ficcao_cientifica', 'Ficção científica'),
     ]
 
     nome = models.CharField(max_length=100)
