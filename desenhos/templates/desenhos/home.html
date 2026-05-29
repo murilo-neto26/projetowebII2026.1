@@ -3,11 +3,31 @@
 Início
 {% endblock %}
 {% block content %}
-<h1>Biblioteca de Desenhos</h1>
+<h1>Minha Página Inicial</h1>
 <p>
     Explore desenhos clássicos, descubra estúdios
     e encontre animações da sua infância.
 </p>
 <a href="{% url 'biblioteca' %}">Ver biblioteca</a>
-</a>
+
+<hr>
+
+<h2>Bem-vindo, {{ user.username }}!</h2>
+
+{% if user.perfil.foto %}
+    <img src="{{ user.perfil.foto.url }}" width="150">
+{% else %}
+    <p>
+        <em>Nenhuma foto de perfil cadastrada</em>
+    </p>
+{% endif %}
+
+<p>E-mail: {{ user.email }}</p>
+
+<p>
+    Conta ativada?
+    {{ user.perfil.email_confirmado|yesno:"Sim,Não" }}
+</p>
+
+<a href="{% url 'logout' %}"> Sair do sistema </a>
 {% endblock %}
