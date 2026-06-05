@@ -6,7 +6,7 @@
 
 ## Descrição
 
-O RetroToons é uma plataforma web voltada para fãs de desenhos animados clássicos e nostálgicos. O sistema permite explorar uma biblioteca inteligente de desenhos antigos, com informações organizadas por década, gênero, estúdios e emissoras responsáveis pelas produções. Além disso, os usuários podem criar listas personalizadas com seus desenhos favoritos, reunindo suas obras mais marcantes da infância em um espaço interativo e personalizado.
+O RetroToons é uma plataforma web voltada para fãs de desenhos animados clássicos e nostálgicos. O sistema permite explorar uma biblioteca de desenhos antigos, com informações organizadas por década, gênero, estúdios e emissoras responsáveis pelas produções. Além disso, os usuários podem criar listas personalizadas com seus desenhos favoritos, reunindo suas obras mais marcantes da infância em um espaço interativo e personalizado.
 
 O objetivo do projeto é reunir entretenimento, nostalgia e organização em um único ambiente intuitivo e acessível.
 
