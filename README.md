@@ -6,7 +6,7 @@
 
 ## Descrição
 
-O RetroToons é uma plataforma web voltada para fãs de desenhos animados clássicos e nostálgicos. O sistema permite explorar uma biblioteca inteligente de desenhos antigos, com informações organizadas por década, gênero, estúdios e emissoras responsáveis pelas produções. Além disso, os usuários podem criar listas personalizadas com seus desenhos favoritos, reunindo suas obras mais marcantes da infância em um espaço interativo e personalizado.
+O RetroToons é uma plataforma web voltada para fãs de desenhos animados clássicos e nostálgicos. O sistema permite explorar uma biblioteca de desenhos antigos, com informações organizadas por década, gênero, estúdios e emissoras responsáveis pelas produções. Além disso, os usuários podem criar listas personalizadas com seus desenhos favoritos, reunindo suas obras mais marcantes da infância.
 
 O objetivo do projeto é reunir entretenimento, nostalgia e organização em um único ambiente intuitivo e acessível.
 
@@ -69,6 +69,10 @@ source venv/bin/activate
 pip install django
 ```
 
+```bash
+pip install Pillow
+```
+
 ### 6. Executar as migrações
 
 ```bash
@@ -97,16 +101,17 @@ http://127.0.0.1:8000/
 
 ## Funcionalidades (checklist)
 
-### 🧠 1. Biblioteca inteligente de desenhos
+### 🧠 1. Biblioteca de desenhos
 
-_Uma base de dados interativa._
+_Uma base de dados gerais._
 
 #### Funcionalidades:
 
-- [ ] Busca por década (anos 60, 70, 80, etc.)
-- [ ] Filtro por gênero (comédia, aventura, mistério…)
-- [ ] Estúdios
-- [ ] Sessões temáticas (“desenhos esquecidos”, “clássicos dos sábados”)
+- [ ] Busca por década (anos 60, 70, 80…)
+- [ ] Busca por gênero (comédia, aventura, mistério…)
+- [ ] Busca por estúdio (Futura, Cultura…)
+- [ ] Busca por emissora
+- [ ] Busca por listas (“desenhos esquecidos”, “clássicos dos sábados”…)
 
 ---
 
