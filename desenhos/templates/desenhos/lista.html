@@ -3,12 +3,35 @@
 Listas
 {% endblock %}
 {% block content %}
+<a href="{% url 'criar_lista' %}">
+    Criar nova lista
+</a>
 <h1>Listas</h1>
 {% for lista in listas %}
 <div class="card">
     <h2>{{ lista.nome }}</h2>
     {% for desenho in lista.desenhos.all %}
-        <p>{{ desenho.nome }}</p>
+        <hr>
+        <h3>{{ desenho.nome }}</h3>
+        {% if desenho.capa %}
+            <img
+                src="{{ desenho.capa.url }}"
+                alt="{{ desenho.nome }}"
+                width="180"
+            >
+        {% endif %}
+        <ul>
+            <li><strong>Ano:</strong> {{ desenho.ano }}</li>
+            <li><strong>Gênero:</strong> {{ desenho.get_genero_display }}</li>
+            <li><strong>Estúdio:</strong> {{ desenho.estudio }}</li>
+            <li><strong>Emissora:</strong> {{ desenho.emissora }}</li>
+        </ul>
+        <p>
+            <strong>Sinopse:</strong><br>
+            {{ desenho.sinopse }}
+        </p>
+    {% empty %}
+        <p>Esta lista não possui desenhos.</p>
     {% endfor %}
 </div>
 {% endfor %}

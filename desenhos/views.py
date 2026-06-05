@@ -6,33 +6,37 @@ from django.utils.encoding import force_bytes
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
-
+from .forms import ListaForm
+from .models import Lista
 from .models import Desenho
 from .forms import CadastroForm
 from .models import Perfil
 
-
-def home(request):
-    return render(request, 'desenhos/home.html')
-
-
 def biblioteca(request):
-    return render(request, 'desenhos/biblioteca.html')
-
+    busca = request.GET.get('busca')
+    desenhos = Desenho.objects.all()
+    if busca:
+        desenhos = desenhos.filter(nome__icontains=busca)
+    return render(
+        request,'desenhos/biblioteca.html', {'desenhos': desenhos}
+    )
 
 def lista(request):
-    desenhos = Desenho.objects.all()
-    return render(request, 'desenhos/lista.html', {
-        'desenhos': desenhos
-    })
+    listas = Lista.objects.all()
+    return render(
+        request,
+        'desenhos/lista.html',
+        {'listas': listas}
+    )
 
 def cadastrar(request):
     if request.method == 'POST':
         form = CadastroForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            perfil = Perfil.objects.create(
+            user.is_active = False
+            user.save()
+            Perfil.objects.create(
                 user=user,
                 foto=form.cleaned_data['foto']
             )
@@ -45,10 +49,10 @@ def cadastrar(request):
                 'web2@ifce.edu.br',
                 [user.email]
             )
-            return render(request, 'cadastro_sucesso.html')
+            return render(request, 'desenhos/cadastro_sucesso.html')
     else:
         form = CadastroForm()
-    return render(request, 'cadastrar.html', {
+    return render(request, 'desenhos/cadastrar.html', {
         'form': form
     })
 
@@ -62,14 +66,29 @@ def ativar_conta(request, uidb64, token):
         perfil = user.perfil
         perfil.email_confirmado = True
         perfil.save()
+        user.is_active = True
+        user.save()
         return redirect('login')
     else:
-        return render(request, 'token_invalido.html')
-    
+        return render(request, 'desenhos/token_invalido.html')
+
 @login_required
 def home(request):
-
     if not request.user.perfil.email_confirmado:
-        return render(request, 'aguardando_confirmacao.html')
+        return render(request, 'desenhos/aguardando_confirmacao.html')
+    return render(request, 'desenhos/home.html')
 
-    return render(request, 'home.html')
+@login_required
+def criar_lista(request):
+    if request.method == 'POST':
+        form = ListaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista')
+    else:
+        form = ListaForm()
+    return render(
+        request,
+        'desenhos/criar_lista.html',
+        {'form': form}
+    )
