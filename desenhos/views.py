@@ -6,6 +6,7 @@ from django.utils.encoding import force_bytes
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 from .forms import ListaForm
 from .models import Lista
 from .models import Desenho
@@ -13,13 +14,25 @@ from .forms import CadastroForm
 from .models import Perfil
 
 def biblioteca(request):
-    busca = request.GET.get('busca')
     desenhos = Desenho.objects.all()
+    busca = request.GET.get('busca')
+    genero = request.GET.get('genero')
+    decada = request.GET.get('decada')
+    estudio = request.GET.get('estudio')
+    emissora = request.GET.get('emissora')
     if busca:
         desenhos = desenhos.filter(nome__icontains=busca)
-    return render(
-        request,'desenhos/biblioteca.html', {'desenhos': desenhos}
-    )
+    if genero:
+        desenhos = desenhos.filter(genero=genero)
+    if decada:
+        inicio = int(decada)
+        fim = inicio + 9
+        desenhos = desenhos.filter(ano__gte=inicio,ano__lte=fim)
+    if estudio:
+        desenhos = desenhos.filter(estudio__icontains=estudio)
+    if emissora:
+        desenhos = desenhos.filter(emissora__icontains=emissora)
+    return render(request,'desenhos/biblioteca.html',{'desenhos': desenhos})
 
 def lista(request):
     listas = Lista.objects.all()
@@ -87,8 +100,17 @@ def criar_lista(request):
             return redirect('lista')
     else:
         form = ListaForm()
-    return render(
-        request,
-        'desenhos/criar_lista.html',
-        {'form': form}
+    return render(request,'desenhos/criar_lista.html',{'form': form}
+    )
+
+@login_required
+def excluir_lista(request, lista_id):
+    lista = get_object_or_404(
+        Lista,
+        id=lista_id
+    )
+    if request.method == 'POST':
+        lista.delete()
+        return redirect('lista')
+    return render(request,'desenhos/excluir_lista.html',{'lista': lista}
     )

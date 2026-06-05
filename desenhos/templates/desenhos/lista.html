@@ -10,6 +10,9 @@ Listas
 {% for lista in listas %}
 <div class="card">
     <h2>{{ lista.nome }}</h2>
+    <a href="{% url 'excluir_lista' lista.id %}">
+        Excluir lista
+    </a>
     {% for desenho in lista.desenhos.all %}
         <hr>
         <h3>{{ desenho.nome }}</h3>
@@ -34,5 +37,7 @@ Listas
         <p>Esta lista não possui desenhos.</p>
     {% endfor %}
 </div>
+{% empty %}
+    <p>Nenhuma lista cadastrada.</p>
 {% endfor %}
 {% endblock %}

@@ -8,12 +8,75 @@ Biblioteca
     <input
         type="text"
         name="busca"
-        placeholder="Pesquisar desenho..."
+        placeholder="Nome do desenho"
+    >
+    <select name="genero">
+        <option value="">
+            Todos os gêneros
+        </option>
+        <option value="comedia">
+            Comédia
+        </option>
+        <option value="aventura">
+            Aventura
+        </option>
+        <option value="misterio">
+            Mistério
+        </option>
+        <option value="acao">
+            Ação
+        </option>
+        <option value="romance">
+            Romance
+        </option>
+        <option value="fantasia">
+            Fantasia
+        </option>
+        <option value="ficcao_cientifica">
+            Ficção Científica
+        </option>
+    </select>
+    <select name="decada">
+        <option value="">
+            Todas as décadas
+        </option>
+        <option value="1960">
+            Anos 60
+        </option>
+        <option value="1970">
+            Anos 70
+        </option>
+        <option value="1980">
+            Anos 80
+        </option>
+        <option value="1990">
+            Anos 90
+        </option>
+        <option value="2000">
+            Anos 2000
+        </option>
+        <option value="2010">
+            Anos 2010
+        </option>
+        <option value="2020">
+            Anos 2020
+        </option>
+    </select>
+    <input
+        type="text"
+        name="estudio"
+        placeholder="Estúdio"
+    >
+    <input
+        type="text"
+        name="emissora"
+        placeholder="Emissora"
     >
     <button type="submit">
         Buscar
     </button>
 </form>
+<hr>
 {% for desenho in desenhos %}
 <div class="card">
     {% if desenho.capa %}
@@ -23,11 +86,29 @@ Biblioteca
         >
     {% endif %}
     <h2>{{ desenho.nome }}</h2>
-    <p><strong>Ano:</strong> {{ desenho.ano }}</p>
-    <p><strong>Gênero:</strong> {{ desenho.genero }}</p>
-    <p><strong>Estúdio:</strong> {{ desenho.estudio }}</p>
-    <p><strong>Emissora:</strong> {{ desenho.emissora }}</p>
-    <p>{{ desenho.sinopse }}</p>
+    <p>
+        <strong>Ano:</strong>
+        {{ desenho.ano }}
+    </p>
+    <p>
+        <strong>Gênero:</strong>
+        {{ desenho.get_genero_display }}
+    </p>
+    <p>
+        <strong>Estúdio:</strong>
+        {{ desenho.estudio }}
+    </p>
+    <p>
+        <strong>Emissora:</strong>
+        {{ desenho.emissora }}
+    </p>
+    <p>
+        {{ desenho.sinopse }}
+    </p>
 </div>
+{% empty %}
+<p>
+    Nenhum desenho encontrado.
+</p>
 {% endfor %}
 {% endblock %}
