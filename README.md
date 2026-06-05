@@ -69,6 +69,10 @@ source venv/bin/activate
 pip install django
 ```
 
+```bash
+pip install Pillow
+```
+
 ### 6. Executar as migrações
 
 ```bash
