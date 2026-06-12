@@ -54,6 +54,7 @@ def cadastrar(request):
                 foto=form.cleaned_data['foto']
             )
             token = default_token_generator.make_token(user)
+            print("TOKEN GERADO:", token)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             link = f'http://localhost:8000/ativar/{uid}/{token}/'
             send_mail(
@@ -75,6 +76,17 @@ def ativar_conta(request, uidb64, token):
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
+    print("UID:", uid)
+    print("TOKEN:", token)
+    print("USER:", user)
+    print("TOKEN RECEBIDO:", token)
+
+    resultado = default_token_generator.check_token(user, token)
+
+    print("TOKEN VALIDO?", resultado)
+    resultado = default_token_generator.check_token(user, token)
+
+    print("TOKEN VALIDO?", resultado)
     if user is not None and default_token_generator.check_token(user, token):
         perfil = user.perfil
         perfil.email_confirmado = True

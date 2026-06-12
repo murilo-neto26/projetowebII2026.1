@@ -1,33 +1,43 @@
 {% extends 'desenhos/base.html' %}
+
 {% block title %}
 Início
 {% endblock %}
+
 {% block content %}
-<h1>Página Inicial</h1>
-<p>
-    Explore desenhos clássicos, descubra estúdios
-    e encontre animações da sua infância.
-</p>
-<a href="{% url 'biblioteca' %}">Ver biblioteca</a>
 
-<hr>
+<section class="sobre">
+    <div class="texto">
+        <h2>O que é o Retrotoons?</h2>
 
-<h2>Bem-vindo, {{ user.username }}!</h2>
+        <p>
+            O Retrotoons é uma plataforma web voltada para fãs de desenhos
+            animados clássicos e nostálgicos.
+        </p>
 
-{% if user.perfil.foto %}
-    <img src="{{ user.perfil.foto.url }}" width="150">
-{% else %}
+        <a class="botao" href="{% url 'biblioteca' %}">
+            Explorar Biblioteca
+        </a>
+    </div>
+
+    <div class="imagem-lateral">
+        Imagem
+    </div>
+</section>
+
+<section class="usuario">
+    <h2>Bem-vindo, {{ user.username }}!</h2>
+
+    {% if user.perfil.foto %}
+        <img src="{{ user.perfil.foto.url }}" class="foto-perfil">
+    {% endif %}
+
+    <p>E-mail: {{ user.email }}</p>
+
     <p>
-        <em>Nenhuma foto de perfil cadastrada</em>
+        Conta ativada?
+        {{ user.perfil.email_confirmado|yesno:"Sim,Não" }}
     </p>
-{% endif %}
+</section>
 
-<p>E-mail: {{ user.email }}</p>
-
-<p>
-    Conta ativada?
-    {{ user.perfil.email_confirmado|yesno:"Sim,Não" }}
-</p>
-
-<a href="{% url 'logout' %}"> Sair do sistema </a>
 {% endblock %}

@@ -3,21 +3,38 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>
-        {% block title %}
-        {% endblock %}
-    </title>
+    <title>{% block title %}{% endblock %}</title>
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <nav>
+
+<header>
+
+    <div class="logo">
+        {% block logo %}
+            Retrotoonslogo
+        {% endblock %}
+    </div>
+
+    <p class="subtitulo">
+        {% block subtitulo %}
+            Sua biblioteca inteligente de desenhos!
+        {% endblock %}
+    </p>
+
+    <nav class="menu">
         <a href="{% url 'home' %}">Início</a>
         <a href="{% url 'biblioteca' %}">Biblioteca</a>
-        <a href="{% url 'lista' %}">Listas</a>
+        <a href="{% url 'lista' %}">Suas Listas</a>
     </nav>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
 </body>
 </html>
