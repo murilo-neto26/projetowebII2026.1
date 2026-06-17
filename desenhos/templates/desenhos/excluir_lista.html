@@ -1,17 +1,31 @@
 {% extends 'desenhos/base.html' %}
+
 {% block content %}
-<h1>Excluir Lista</h1>
-<p>
-    Tem certeza que deseja excluir
-    "{{ lista.nome }}"?
-</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">
-        Sim, excluir
-    </button>
-</form>
-<a href="{% url 'lista' %}">
-    Cancelar
-</a>
+
+<div class="excluir-container">
+
+    <h1>Excluir Lista</h1>
+
+    <p>
+        Tem certeza que deseja excluir
+        "<strong>{{ lista.nome }}</strong>"?
+    </p>
+<div class="acoes-excluir">
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit">
+            Sim, excluir
+        </button>
+    </form>
+
+    <a href="{% url 'lista' %}">
+        Cancelar
+    </a>
+
+</div>
+
+</div>
+
 {% endblock %}

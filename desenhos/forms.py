@@ -18,6 +18,14 @@ class CadastroForm(forms.ModelForm):
         return user
 
 class ListaForm(forms.ModelForm):
+    nome = forms.CharField(
+        label='Nome da Lista',
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Ex: Favoritos dos anos 90'
+            }
+        )
+    )
     desenhos = forms.ModelMultipleChoiceField(
         queryset=Desenho.objects.all(),
         widget=forms.CheckboxSelectMultiple

@@ -1,14 +1,25 @@
 {% extends 'desenhos/base.html' %}
+
 {% block title %}
 Criar Lista
 {% endblock %}
+
 {% block content %}
-<nav>><h1>Criar Lista</h1></nav>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">
-        Criar Lista
-    </button>
-</form>
+
+<div class="criar-lista-container">
+
+    <h1>Criar Lista</h1>
+
+    <form method="post" class="criar-lista-form">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Criar Lista
+        </button>
+    </form>
+
+</div>
+
 {% endblock %}
