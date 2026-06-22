@@ -11,4 +11,15 @@ urlpatterns = [
     path('listas/criar/', views.criar_lista, name='criar_lista'),
     path('listas/excluir/<int:lista_id>/',views.excluir_lista,name='excluir_lista'),
     path('listas/<int:lista_id>/',views.detalhes_lista,name='detalhes_lista'),
+    path(
+    'favoritar/<int:desenho_id>/',
+    views.favoritar_desenho,
+    name='favoritar_desenho'
+),
+
+path(
+    'assistido/<int:desenho_id>/',
+    views.marcar_assistido,
+    name='marcar_assistido'
+),
 ]

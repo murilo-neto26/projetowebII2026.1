@@ -35,6 +35,22 @@ def biblioteca(request):
     return render(request,'desenhos/biblioteca.html',{'desenhos': desenhos})
 
 def lista(request):
+
+    Lista.objects.get_or_create(
+        nome='Favoritos'
+    )
+
+    Lista.objects.get_or_create(
+        nome='Assistidos'
+    )
+
+    listas = Lista.objects.all()
+
+    return render(
+        request,
+        'desenhos/lista.html',
+        {'listas': listas}
+    )
     listas = Lista.objects.all()
     return render(
         request,
@@ -137,4 +153,42 @@ def excluir_lista(request, lista_id):
         lista.delete()
         return redirect('lista')
     return render(request,'desenhos/excluir_lista.html',{'lista': lista}
+    )
+
+@login_required
+def favoritar_desenho(request, desenho_id):
+
+    desenho = get_object_or_404(
+        Desenho,
+        id=desenho_id
+    )
+
+    favoritos, criado = Lista.objects.get_or_create(
+        nome='Favoritos'
+    )
+
+    favoritos.desenhos.add(desenho)
+
+    return render(
+        request,
+        'desenhos/favoritado.html'
+    )
+
+@login_required
+def marcar_assistido(request, desenho_id):
+
+    desenho = get_object_or_404(
+        Desenho,
+        id=desenho_id
+    )
+
+    assistidos, criado = Lista.objects.get_or_create(
+        nome='Assistidos'
+    )
+
+    assistidos.desenhos.add(desenho)
+
+    return render(
+        request,
+        'desenhos/assistido.html'
     )

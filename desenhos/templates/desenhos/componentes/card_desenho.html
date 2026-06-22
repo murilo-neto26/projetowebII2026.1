@@ -9,6 +9,7 @@
     {% endif %}
 
     <div class="info">
+
         <h2>{{ desenho.nome }}</h2>
 
         <p><strong>Ano:</strong> {{ desenho.ano }}</p>
@@ -32,6 +33,25 @@
             <strong>Sinopse:</strong>
             {{ desenho.sinopse }}
         </p>
+
+        <div class="acoes-desenho">
+
+            <a
+                href="{% url 'favoritar_desenho' desenho.id %}"
+                class="btn-favoritar"
+            >
+                ⭐ Favoritar
+            </a>
+
+            <a
+                href="{% url 'marcar_assistido' desenho.id %}"
+                class="btn-assistido"
+            >
+                ✔ Assistido
+            </a>
+
+        </div>
+
     </div>
 
 </div>

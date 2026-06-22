@@ -547,3 +547,74 @@ label[for="id_nome"]{
     margin: 40px auto;
     padding: 0 20px;
 }
+
+
+
+.acoes-desenho{
+    margin-top:15px;
+    display:flex;
+    gap:10px;
+}
+
+.btn-favoritar,
+.btn-assistido{
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.btn-favoritar{
+    background:#f4d03f;
+    color:black;
+}
+
+.btn-assistido{
+    background:#5dade2;
+    color:white;
+}
+
+
+.sucesso-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:60vh;
+}
+
+.sucesso-box{
+    background-color:#0b5d57; 
+    color: white; 
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    width:400px;
+}
+
+.sucesso-box h1{
+    margin-bottom:25px;
+}
+
+.sucesso-botoes{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.btn-sucesso{
+    background:white;
+    color:black;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.btn-sucesso:hover{
+    transform:scale(1.05);
+}
+
+.logo-home{
+    width: 250px;
+    height: auto;
+}

@@ -1,0 +1,27 @@
+{% extends 'desenhos/base.html' %}
+
+{% block content %}
+
+<div class="sucesso-container">
+
+    <div class="sucesso-box">
+
+        <h1>✔ Marcado como Assistido!</h1>
+
+        <div class="sucesso-botoes">
+
+            <a href="{% url 'lista' %}" class="btn-sucesso">
+                Ver Assistidos
+            </a>
+
+            <a href="{% url 'biblioteca' %}" class="btn-sucesso">
+                Continuar na Biblioteca
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
