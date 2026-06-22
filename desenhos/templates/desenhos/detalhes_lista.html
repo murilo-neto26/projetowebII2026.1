@@ -1,0 +1,25 @@
+{% extends 'desenhos/base.html' %}
+
+{% block logo %}
+{{ lista.nome }}
+{% endblock %}
+
+{% block title %}
+{{ lista.nome }}
+{% endblock %}
+
+{% block content %}
+
+<h2>Desenhos da lista</h2>
+
+{% for desenho in lista.desenhos.all %}
+
+    {% include 'desenhos/componentes/card_desenho.html' %}
+
+{% empty %}
+
+<p>Essa lista está vazia.</p>
+
+{% endfor %}
+
+{% endblock %}

@@ -87,41 +87,7 @@ Biblioteca
 </form>
 <hr>
 {% for desenho in desenhos %}
-<div class="card">
-
-    {% if desenho.capa %}
-        <img
-            class="capa"
-            src="{{ desenho.capa.url }}"
-            alt="{{ desenho.nome }}"
-        >
-    {% endif %}
-
-    <div class="info">
-        <h2>{{ desenho.nome }}</h2>
-
-        <p><strong>Ano:</strong> {{ desenho.ano }}</p>
-
-        <p>
-            <strong>Gênero:</strong>
-            {{ desenho.get_genero_display }}
-        </p>
-
-        <p>
-            <strong>Estúdio:</strong>
-            {{ desenho.estudio }}
-        </p>
-
-        <p>
-            <strong>Emissora:</strong>
-            {{ desenho.emissora }}
-        </p>
-
-        <p> <strong>Sinopse:</strong>
-            {{ desenho.sinopse }}</p>
-    </div>
-
-</div>
+    {% include 'desenhos/componentes/card_desenho.html' %}
 {% empty %}
 <p>
     Nenhum desenho encontrado.

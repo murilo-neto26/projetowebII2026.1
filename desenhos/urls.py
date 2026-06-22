@@ -10,4 +10,5 @@ urlpatterns = [
     path('ativar/<uidb64>/<token>/', views.ativar_conta, name='ativar_conta'),
     path('listas/criar/', views.criar_lista, name='criar_lista'),
     path('listas/excluir/<int:lista_id>/',views.excluir_lista,name='excluir_lista'),
+    path('listas/<int:lista_id>/',views.detalhes_lista,name='detalhes_lista'),
 ]

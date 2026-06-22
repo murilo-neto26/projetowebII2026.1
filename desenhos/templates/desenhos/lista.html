@@ -14,21 +14,41 @@ Listas
 {% block content %}
 
 <div class="acoes-lista">
-    <a href="{% url 'criar_lista' %}" class="btn-lista">
+    <a href="{% url 'criar_lista' %}" class="btn-listaCima">
         + Criar nova lista
     </a>
 </div>
-
-
 {% for lista in listas %}
-<div class="card">
-    <h2>{{ lista.nome }}</h2>
+<div class="card lista-card">
+    <div class="info-lista">
+        <h2>
+            <a class="titulo-lista" href="{% url 'detalhes_lista' lista.id %}">
+                {{ lista.nome }}
+            </a>
+        </h2>
+        <p>{{ lista.desenhos.count }} desenhos</p>
+        <div class="acoes">
+            <a class="btn-listaBaixo" href="{% url 'detalhes_lista' lista.id %}">
+                Abrir lista
+            </a>
+            <a class="btn-excluir" href="{% url 'excluir_lista' lista.id %}">
+                Excluir
+            </a>
+        </div>
+    </div>
+    <div class="miniaturas">
 
-    <a href="{% url 'excluir_lista' lista.id %}">
-        Excluir lista
-    </a>
-
-    ...
+        {% for desenho in lista.desenhos.all|slice:":4" %}
+            {% if desenho.capa %}
+                <img
+                    src="{{ desenho.capa.url }}"
+                    alt="{{ desenho.nome }}"
+                    class="miniatura">
+            {% else %}
+                <div class="miniatura sem-capa"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
 </div>
 {% endfor %}
 

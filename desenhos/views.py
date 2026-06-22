@@ -97,11 +97,23 @@ def ativar_conta(request, uidb64, token):
     else:
         return render(request, 'desenhos/token_invalido.html')
 
+def detalhes_lista(request, lista_id):
+    lista = get_object_or_404(Lista, id=lista_id)
+
+    return render(
+        request,
+        'desenhos/detalhes_lista.html',
+        {'lista': lista}
+    )
+
 @login_required
 def home(request):
     if not request.user.perfil.email_confirmado:
         return render(request, 'desenhos/aguardando_confirmacao.html')
-    return render(request, 'desenhos/home.html')
+    desenhos = Desenho.objects.all()[:6]
+    return render(request, 'desenhos/home.html', {
+        'desenhos': desenhos
+    })
 
 @login_required
 def criar_lista(request):

@@ -1,44 +1,65 @@
 {% extends 'desenhos/base.html' %}
-
+{% load static %}
 {% block title %}
 Início
 {% endblock %}
 
 {% block content %}
-
-<section class="sobre">
-    <div class="texto">
-        <h2>O que é o Retrotoons?</h2>
-
+<div class="container-home">
+<section class="hero">
+    <div class="hero-texto">
+        <h1>Reviva os desenhos da sua infância.</h1>
         <p>
-            O RetroToons é uma plataforma web voltada para fãs de desenhos animados clássicos e nostálgicos. O sistema permite explorar uma biblioteca de desenhos antigos, com informações organizadas por década, gênero, estúdios e emissoras responsáveis pelas produções. Além disso, os usuários podem criar listas personalizadas com seus desenhos favoritos, reunindo suas obras mais marcantes da infância.
-
-            O objetivo do projeto é reunir entretenimento, nostalgia e organização em um único ambiente intuitivo e acessível.
+            Explore uma biblioteca com desenhos clássicos organizados por
+            década, gênero e estúdio. Descubra curiosidades, monte listas
+            personalizadas e encontre seus desenhos favoritos em um só lugar.
         </p>
-
-        <a class="botao" href="{% url 'biblioteca' %}">
+        <a href="{% url 'biblioteca' %}" class="botao">
             Explorar Biblioteca
         </a>
     </div>
+    <div class="hero-imagem">
 
-    <div class="imagem-lateral">
-        Imagem
+        <!-- coloque depois uma imagem aqui -->
+        <img src="{% static 'imagens/logo.png' %}" alt="RetroToons">
     </div>
 </section>
 
-<section class="usuario">
-    <h2>Bem-vindo, {{ user.username }}!</h2>
+<section class="usuario-card">
 
     {% if user.perfil.foto %}
         <img src="{{ user.perfil.foto.url }}" class="foto-perfil">
     {% endif %}
 
-    <p>E-mail: {{ user.email }}</p>
+    <h2>Bem-vindo, {{ user.username }}!</h2>
 
-    <p>
-        Conta ativada?
-        {{ user.perfil.email_confirmado|yesno:"Sim,Não" }}
-    </p>
+    <p>{{ user.email }}</p>
 </section>
+<section class="destaques">
 
+    <div class="titulo-destaques">
+        <h2>Adicionados recentemente</h2>
+    </div>
+
+    <div class="mini-cards">
+
+    {% for desenho in desenhos %}
+
+        <a href="{% url 'biblioteca' %}" class="mini-card">
+
+            <img src="{{ desenho.capa.url }}" alt="{{ desenho.nome }}">
+
+            <span>{{ desenho.nome }}</span>
+
+        </a>
+
+    {% empty %}
+
+        <p>Nenhum desenho cadastrado.</p>
+
+    {% endfor %}
+
+</div>
+</div>
+</section>
 {% endblock %}
